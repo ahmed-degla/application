@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Information</title>
+    <style>
+        /* Root Styles */
+        :root {
+            --primary-color: #4caf50;
+            --primary-dark: #388e3c;
+            --accent-color: #81c784;
+            --text-dark: #333;
+            --text-light: #fff;
+            --background: linear-gradient(135deg, #4caf50, #81c784);
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: var(--background);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .check {
+            background: var(--text-light);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--text-light);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.02);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div class="check">
+        <h2>Verify Your Information</h2>
+        <form id="infoForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required>
+            <button type="submit">Check</button>
+        </form>
+    </div>
+
+    <div id="home" style="display: none; text-align: center; color: white;">
+        <h1>Welcome to the Home Screen</h1>
+        <p>This is your beautifully designed home view.</p>
+        <button onclick="backToCheck()" style="background: var(--accent-color); padding: 10px 15px; color: white; border: none; border-radius: 5px; cursor: pointer;">Back</button>
+    </div>
+
+    <script>
+        const form = document.getElementById('infoForm');
+        const checkContainer = document.querySelector('.check');
+        const homeContainer = document.getElementById('home');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = form.name.value.trim();
+            const age = parseInt(form.age.value.trim(), 10);
+
+            if (name && age > 0) {
+                checkContainer.style.display = 'none';
+                homeContainer.style.display = 'block';
+            } else {
+                alert('Please enter valid information.');
+            }
+        });
+
+        function backToCheck() {
+            homeContainer.style.display = 'none';
+            checkContainer.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
